@@ -1,4 +1,6 @@
-# Mastodon bot that toots gigs in Sydney
+# Mastodon bot that toots Sydney beach pollution forecasts.
+
+Data sourced from https://www.beachwatch.nsw.gov.au.
 
 <a rel="me" href="https://botsin.space/@BeachBot">Mastodon</a>
 
