@@ -12,7 +12,7 @@ Edit `.env.prod` with server url and app token.
 
 ##  Deploy
 
-Install piku https://github.com/piku/piku
+Install piku https://github.com/piku/piku. Install https://piku.github.io/manage.html for setting environment variables.
 
 `git remote add piku piku@some.server:beach-bot`
 
