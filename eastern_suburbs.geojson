@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "eastern_suburbs",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 151.253980043231223, -33.881713242122373 ], [ 151.334278771166026, -33.882382782767422 ], [ 151.24865017133331, -33.992494271315906 ], [ 151.24865017133331, -33.992494271315906 ], [ 151.253980043231223, -33.881713242122373 ] ] ] ] } }
+]
+}
