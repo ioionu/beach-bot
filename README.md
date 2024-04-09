@@ -1,5 +1,7 @@
 # Mastodon bot that toots gigs in Sydney
 
+<a rel="me" href="https://botsin.space/@BeachBot">Mastodon</a>
+
 ## Run Local
 
 `pip install -r requirements.txt`
