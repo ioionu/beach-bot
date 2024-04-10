@@ -19,7 +19,10 @@ URL = "https://api.beachwatch.nsw.gov.au/public/sites/geojson"
 
 FORECAST_TEMPLATE = "{forecast}: {locations}."
 TOOT_TEMPLATE = "Pollution forecast for {area}:\n{forecasts}\n"
-INTRO_TOOT_TEMPLATE = "Sydney beach pollution forecasts as of {when}.\n#sydney #pollution #ocean"
+INTRO_TOOT_TEMPLATE = """Sydney beach pollution forecasts as of {when}.
+Check https://www.beachwatch.nsw.gov.au for details.
+#sydney #pollution #ocean
+"""
 TIMEZONE = "Australia/Sydney"
 
 areas = [
