@@ -5,6 +5,8 @@ import os
 import logging
 from functools import reduce
 import shapely
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 logger = logging.getLogger("BeachBot")
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +18,9 @@ max_len = 500
 URL = "https://api.beachwatch.nsw.gov.au/public/sites/geojson"
 
 FORECAST_TEMPLATE = "{forecast}: {locations}."
-TOOT_TEMPLATE = "Beach pollution forecast for {area}:\n{forecasts}\n#sydney #pollution #ocean\n"
+TOOT_TEMPLATE = "Pollution forecast for {area}:\n{forecasts}\n"
+INTRO_TOOT_TEMPLATE = "Sydney beach pollution forecasts as of {when}.\n#sydney #pollution #ocean"
+TIMEZONE = "Australia/Sydney"
 
 areas = [
     {
@@ -69,6 +73,13 @@ def build_toot(name, area_data):
         toot = "{toot}…".format(toot=toot[0:max_len-1])
     return toot
 
+def get_forecast_time(geojson):
+    return datetime.fromisoformat(geojson["features"][0]["properties"]["pollutionForecastTimeStamp"])
+
+def get_intro_toot(when):
+    toot = INTRO_TOOT_TEMPLATE.format(when=when.astimezone(ZoneInfo(TIMEZONE)).strftime("%I:%M%p (%Z)"))
+    return toot
+
 def get_data():
     response = requests.get(URL)
     data = response.json()
@@ -89,8 +100,18 @@ if __name__ == "__main__":
 
     geojson = get_data()
     toot_id = None
+    toots = []
+    when = get_forecast_time(geojson)
+    
     for area in areas:
         area_data = build_area_data(area, geojson)
         toot = build_toot(area, area_data)
-        toot_id = send_toot(toot, toot_id)
+        toots.append(toot)
+    
+    toot = get_intro_toot(when)
+    logger.info(toot)
+    toot_id = send_toot(toot, None)
+
+    for toot in toots:
+        send_toot(toot, toot_id)
         logger.info(toot)
