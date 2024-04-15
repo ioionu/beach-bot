@@ -18,7 +18,7 @@ max_len = 500
 
 URL = "https://api.beachwatch.nsw.gov.au/public/sites/geojson"
 
-FORECAST_TEMPLATE = "{forecast}: {locations}."
+FORECAST_TEMPLATE = "{key} {forecast}: {locations}."
 TOOT_TEMPLATE = "Pollution forecast for {area}:\n{forecasts}\n"
 INTRO_TOOT_TEMPLATE = """Sydney beach pollution forecasts as of {when}.
 Check https://www.beachwatch.nsw.gov.au for details.
@@ -49,6 +49,12 @@ areas = [
     }
 ]
 
+key = {
+    "Likely": "❌",
+    "Possible": "⚠️",
+    "Unlikely": "✅"
+}
+
 def build_area_data(area, beaches):
     with open(area["file"], 'r') as reader:
         file = reader.read()
@@ -69,8 +75,8 @@ def build_toot(name, area_data):
     forecasts = []
     for forecast in area_data:
         locations = ", ".join([d["properties"]["siteName"] for d in area_data[forecast]])
-        forecasts.append(FORECAST_TEMPLATE.format(forecast=forecast, locations=locations))
-    forecasts = "\n".join(forecasts)
+        forecasts.append(FORECAST_TEMPLATE.format(forecast=forecast, locations=locations, key=key[forecast]))
+    forecasts = "\n\n".join(forecasts)
     toot = TOOT_TEMPLATE.format(area=area["name"], forecasts=forecasts)
 
     if len(toot) > max_len:
