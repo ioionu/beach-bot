@@ -7,6 +7,7 @@ from functools import reduce
 import shapely
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from dateutil.parser import parse
 
 logger = logging.getLogger("BeachBot")
 logging.basicConfig(level=logging.INFO)
@@ -77,7 +78,8 @@ def build_toot(name, area_data):
     return toot
 
 def get_forecast_time(geojson):
-    return datetime.fromisoformat(geojson["features"][0]["properties"]["pollutionForecastTimeStamp"])
+    # nb py 3.9 fromisoformat does not parse ms in this date.
+    return parse(geojson["features"][0]["properties"]["pollutionForecastTimeStamp"])
 
 def get_intro_toot(when):
     toot = INTRO_TOOT_TEMPLATE.format(when=when.astimezone(ZoneInfo(TIMEZONE)).strftime("%I:%M%p (%Z)"))
