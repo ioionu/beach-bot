@@ -1,1 +1,1 @@
-cron: 10 13/12 * * * python beachbot.py
+cron: 5 18 * * * python beachbot.py
