@@ -12,7 +12,7 @@ Data sourced from https://www.beachwatch.nsw.gov.au.
 
 Edit `.env.prod` with server url and app token.
 
-`set -o allexport; source .env.prod; set +o allexport; ./beachbot.py`
+`set -o allexport; source .env.prod; set +o allexport; ./scheduler.py`
 
 ##  Deploy
 

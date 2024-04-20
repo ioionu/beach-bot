@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Eastern Suburbs",
+        "file": "areas/eastern_suburbs.geojson"
+    },
+    {
+        "name": "Northern Beaches",
+        "file": "areas/northern_beaches.geojson"
+    },
+    {
+        "name": "Botany",
+        "file": "areas/botany.geojson"
+    },
+    {
+        "name": "The Shire",
+        "file": "areas/the_shire.geojson"
+    },
+    {
+        "name": "Sydney Harbour",
+        "file": "areas/sydney_harbour.geojson"
+    }
+]

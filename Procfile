@@ -1,1 +1,1 @@
-cron: 15 20 * * * python beachbot.py
+scheduler: python scheduler.py
