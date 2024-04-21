@@ -5,8 +5,6 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 import logging
 import os
 import json
-from dateutil.parser import parse
-from datetime import datetime
 from zoneinfo import ZoneInfo
 from beachbot import BeachBot
 
@@ -34,39 +32,25 @@ def runner():
     beachbot = BeachBot(mastodon, areas, geojson, MAXLEN, TIMEZONE)
     beachbot.do_all_the_things()
 
-def parse_cron(run_time_str, tz):
-    time_strs = run_time_str.split(",")
-    tz = ZoneInfo(TIMEZONE)
-    times = [
-        parse(time_str)
-            .replace(tzinfo=tz)
-            .astimezone(ZoneInfo("UTC"))
-        for time_str
-        in time_strs
-    ]
-    return times
-
-def schedule(times, tz):
+def schedule(times: str, tz: str) -> None:
     sched = BlockingScheduler()
     tzinfo = ZoneInfo(tz)
     for time in times.split(","):
         time = time.split(":")
         logger.info("Scheduling for {hour}:{minute} ({tz})".format(hour=time[0], minute=time[1], tz=tz))
-        sched.add_job(runner, 'cron', hour=time[0], minute=time[1], timezone=ZoneInfo(tz))
+        sched.add_job(runner, 'cron', hour=time[0], minute=time[1], timezone=tzinfo)
     sched.start()
 
-def get_data(url):
+def get_data(url: str) -> list:
     response = requests.get(url)
     data = response.json()
     return data
 
-def get_areas(file):
+def get_areas(file: str) -> list:
     with open(file, "r") as reader:
         return json.load(reader)
 
 if __name__ == "__main__":
     logger.info("Beginning run.")
-
     schedule(RUNTIMES, TIMEZONE)
-
     logger.info("Be done.")

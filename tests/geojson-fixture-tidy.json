@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.278267,
+          -33.891157
+        ]
+      },
+      "properties": {
+        "id": "405ce99c-7a0b-43f7-8d28-2ee0b65eebb5",
+        "siteName": "Bondi Beach",
+        "pollutionForecast": "Unlikely",
+        "pollutionForecastTimeStamp": "2024-04-20T03:30:03.5766667+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-12T10:00:00+10:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.297668,
+          -33.800514
+        ]
+      },
+      "properties": {
+        "id": "995753ed-db2a-4cb8-9349-922cf3312766",
+        "siteName": "Shelly Beach (Manly)",
+        "pollutionForecast": "Possible",
+        "pollutionForecastTimeStamp": "2024-04-20T03:30:08.0633333+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-15T10:00:00+10:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.04296,
+          -30.46722
+        ]
+      },
+      "properties": {
+        "id": "8831a7d1-8e1a-4a5a-b195-922d6ff21f44",
+        "siteName": "Mylestom Baths (formerly Mylestom Pool)",
+        "pollutionForecast": "Forecast not available",
+        "pollutionForecastTimeStamp": "2024-04-20T12:17:05.3766667+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-15T10:00:00+10:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.15659,
+          -34.05101
+        ]
+      },
+      "properties": {
+        "id": "f40362ee-ce75-4473-a7e5-cb8d062611fc",
+        "siteName": "North Cronulla Beach",
+        "pollutionForecast": "Unlikely",
+        "pollutionForecastTimeStamp": "2024-04-20T03:30:11.3566667+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-12T10:00:00+10:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.306407,
+          -33.705557
+        ]
+      },
+      "properties": {
+        "id": "79eb1688-05c6-491a-9eaa-cbe3811a7f3d",
+        "siteName": "North Narrabeen Beach",
+        "pollutionForecast": "Possible",
+        "pollutionForecastTimeStamp": "2024-04-20T03:30:11.45+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-15T10:00:00+10:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.253476,
+          -33.826888
+        ]
+      },
+      "properties": {
+        "id": "e6daf905-fb81-4aea-911d-fa3350abd298",
+        "siteName": "Balmoral Baths",
+        "pollutionForecast": "Possible",
+        "pollutionForecastTimeStamp": "2024-04-20T03:30:14.0333333+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-16T10:00:00+10:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.270604,
+          -33.803133
+        ]
+      },
+      "properties": {
+        "id": "5ac8a8db-8c24-4626-88d6-fd323d9c250f",
+        "siteName": "Forty Baskets Pool",
+        "pollutionForecast": "Possible",
+        "pollutionForecastTimeStamp": "2024-04-20T03:30:14.12+00:00",
+        "latestResult": "Good",
+        "latestResultRating": 4,
+        "latestResultObservationDate": "2024-04-16T10:00:00+10:00"
+      }
+    }
+  ]
+}
