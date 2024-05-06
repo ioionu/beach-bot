@@ -104,7 +104,7 @@ class BeachBot:
         toot = INTRO_TOOT_TEMPLATE.format(when=when.astimezone(ZoneInfo(TIMEZONE)).strftime("%I:%M%p (%Z)"))
         return toot
 
-    def get_map(self, name, area_data) -> str|None:
+    def get_map(self, name, area_data):
         bm = BeachMap(name, area_data)
         map = bm.draw_map()
         return map

@@ -116,7 +116,7 @@ class BeachMap:
         file_name = "/tmp/map-{name}.png".format(name=safe_name)
         return file_name
 
-    def draw_map(self) -> str|None:
+    def draw_map(self):
         fig = plt.figure(figsize=(10,10))
         ax = fig.add_subplot(111)
 
