@@ -3,3 +3,7 @@ Mastodon.py
 shapely
 python-dateutil
 apscheduler
+matplotlib
+numpy
+adjustText
+basemap

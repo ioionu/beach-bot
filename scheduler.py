@@ -6,7 +6,7 @@ import logging
 import os
 import json
 from zoneinfo import ZoneInfo
-from beachbot import BeachBot
+from BeachBot import BeachBot
 
 logger = logging.getLogger("BeachBot")
 logging.basicConfig(level=logging.INFO)
@@ -20,7 +20,7 @@ URL = "https://api.beachwatch.nsw.gov.au/public/sites/geojson"
 AREA_FILE = os.environ.get("AREA_FILE", "areas.json")
 
 def runner():
-    logger.info("Running scheduled beachbot")
+    logger.info("Running beachbot")
     # https://github.com/halcy/Mastodon.py
     # Create an instance of the Mastodon class
     mastodon = Mastodon(
@@ -31,6 +31,11 @@ def runner():
     areas = get_areas(AREA_FILE)
     beachbot = BeachBot(mastodon, areas, geojson, MAXLEN, TIMEZONE)
     beachbot.do_all_the_things()
+
+def get_beach_bot(mastodon: Mastodon) -> BeachBot:
+    geojson = get_data(URL)
+    areas = get_areas(AREA_FILE)
+    return BeachBot(mastodon, areas, geojson, MAXLEN, TIMEZONE)
 
 def schedule(times: str, tz: str) -> None:
     sched = BlockingScheduler()
@@ -51,6 +56,7 @@ def get_areas(file: str) -> list:
         return json.load(reader)
 
 if __name__ == "__main__":
-    logger.info("Beginning run.")
+    logger.info("Schedulting run.")
     schedule(RUNTIMES, TIMEZONE)
+    runner()
     logger.info("Be done.")

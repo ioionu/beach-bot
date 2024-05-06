@@ -7,6 +7,7 @@ import shapely
 from zoneinfo import ZoneInfo
 from dateutil.parser import parse
 from typing import Optional
+from BeachMap import BeachMap
 
 logger = logging.getLogger("BeachBot")
 logging.basicConfig(level=logging.INFO)
@@ -38,7 +39,7 @@ class BeachBot:
         self.geojson = geojson
         self.maxlen = maxlen
         self.timezone = timezone
-
+ 
     def do_all_the_things(self):
         toot_id = None
         toots = []
@@ -47,14 +48,20 @@ class BeachBot:
         for area in self.areas:
             area_data = self.build_area_data(area, self.geojson)
             toot = self.build_toot(area, area_data)
-            toots.append(toot)
+            map = self.get_map(area['name'], area_data)
+            logger.info(map)
+            toots.append({
+                'toot': toot,
+                'media': map,
+            })
         
         toot = self.get_intro_toot(when)
         logger.info(toot)
         toot_id = self.send_toot(toot, None)
 
         for toot in toots:
-            self.send_toot(toot, toot_id)
+            media = self.upload_media(toot['media'], "map")
+            self.send_toot(toot['toot'], toot_id, media)
             logger.info(toot)
 
 
@@ -97,6 +104,16 @@ class BeachBot:
         toot = INTRO_TOOT_TEMPLATE.format(when=when.astimezone(ZoneInfo(TIMEZONE)).strftime("%I:%M%p (%Z)"))
         return toot
 
-    def send_toot(self, toot: str, toot_id: Optional[int]) -> int:
-        status = self.mastodon.status_post(toot, toot_id)
+    def get_map(self, name, area_data) -> str|None:
+        bm = BeachMap(name, area_data)
+        map = bm.draw_map()
+        return map
+
+    def upload_media(self, file, alt) -> int:
+        media = self.mastodon.media_post(file, description=alt)
+        return media.id
+
+    def send_toot(self, toot: str, toot_id: Optional[int], media=None) -> int:
+        status = self.mastodon.status_post(toot, toot_id, media_ids=media)
         return status.id
+
