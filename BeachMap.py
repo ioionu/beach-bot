@@ -35,7 +35,7 @@ class BeachMap:
         self.area_data = area_data
         logger.info(self.area_data)
 
-    def bounds(self) -> dict|None:
+    def bounds(self):
         llcrnrlon = None
         llcrnrlat = None
         urcrnrlon = None
