@@ -131,7 +131,7 @@ class BeachMap:
             lat_ts=20,
             resolution='c'
         )
-        m.readshapefile('nsw/STE_2021_AUST_SHP_GDA2020/nsw', 'nsw', drawbounds=False)
+        m.readshapefile('nsw/nsw', 'nsw', drawbounds=False)
         m.drawmapboundary(fill_color=colours['sea'])
         plt.title(self.name)
 
